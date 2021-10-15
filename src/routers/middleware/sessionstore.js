@@ -3,11 +3,12 @@ const session = require('express-session')
 // const RedisStore = require('connect-redis')(session)
 const FileStore = require('session-file-store')(session);
 // const redisClient = redis.createClient()
+require('dotenv').config();
 
 const sessionsConf = {
   store: new FileStore(/*{host:'localhost', port:6379, client: redisClient }*/),
   key: 'sid', // ключ куки (название куки)
-  secret: 'thisissecreeet', // для шифрования id сессии
+  secret: process.env.SECRET, // для шифрования id сессии
   resave: true, // сессия будет сохраняться заново только при изменениях
   saveUninitialized: false, // сохранение (или не сохранение) не инициализированной сессии
   httpOnly: true, // невозможно изменить куку с фронта

@@ -4,8 +4,9 @@ const hbs = require('hbs');
 const sessionMiddleware = require('./src/routers/middleware/sessionstore');
 const Validator = require('./src/routers/middleware/validate');
 const app = express();
+require('dotenv').config();
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 hbs.registerPartials(path.resolve(process.env.PWD, 'views', 'partials'));
 app.set('view engine', 'hbs');
